@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=cardCode
+comment0.target=Card(String)
+comment1.params=cardCode\ x\ y\ w\ h\ app
+comment1.target=Card(String,\ int,\ int,\ int,\ int,\ EasyApp)
+comment2.params=x\ y\ w\ h\ app
+comment2.target=void\ addTo(int,\ int,\ int,\ int,\ EasyApp)
+numComments=3

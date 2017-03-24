@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Poker.java</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+	background: #FFFFFF;
+}
+.S2 {
+	font-style: italic;
+	font-family: 'Courier New';
+	color: #006600;
+	background: #FFFFFF;
+	font-size: 10pt;
+}
+.S3 {
+	font-family: 'Courier New';
+	color: #006600;
+	background: #FFFFFF;
+	font-size: 10pt;
+}
+.S4 {
+	color: #aa0000;
+	background: #FFFFFF;
+}
+.S5 {
+	font-weight: bold;
+	color: #00007F;
+	background: #FFFFFF;
+}
+.S6 {
+	color: #aa0000;
+	background: #FFFFFF;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+	background: #FFFFFF;
+}
+span {
+	font-family: 'Courier New';
+	color: #000000;
+	background: #FFFFFF;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S3">/***********</span><br />
+<span class="S3">This is a simple card game. &nbsp;The goal is to get</span><br />
+<span class="S3">the best poker hand you can. &nbsp;You can click a card</span><br />
+<span class="S3">to throw it away and replace it with a new card.</span><br />
+<span class="S3">You can stop any time you wish. &nbsp;You LOSE if you</span><br />
+<span class="S3">draw a card and it is EXACTLY THE SAME as one that</span><br />
+<span class="S3">is already showing.</span><br />
+<br />
+<span class="S3">Watch the movies above to see two example games.</span><br />
+<span class="S3">In the first film, the player changes cards until</span><br />
+<span class="S3">they have a flush - a good result. &nbsp;In the second</span><br />
+<span class="S3">film, they are trying for a full-house. &nbsp;But the </span><br />
+<span class="S3">9 of diamonds comes up as a duplicate, so they lose.</span><br />
+<br />
+<span class="S3">To run the program, you need to download and unpack</span><br />
+<span class="S3">this archive - it contains three Java classes and </span><br />
+<span class="S3">pictures of all the 52 cards in a deck.</span><br />
+<br />
+<span class="S3">Try to do the following exercises:</span><br />
+<br />
+<span class="S3">(1) When cardA is chosen (clicked), a new card appears.</span><br />
+<span class="S3">Use the following command to check whether the new cardA</span><br />
+<span class="S3">matches cardB:</span><br />
+<br />
+<span class="S3">&nbsp;&nbsp;&nbsp;if (cardA.code.equals(cardB.code))</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;{ ... loser ... }</span><br />
+<br />
+<span class="S3">Test this by running the program and clicking cardA lots</span><br />
+<span class="S3">of times until it matches one of the other cards.</span><br />
+<br />
+<span class="S3">(2) Improve #1 so that it checks cardA agains ALL the </span><br />
+<span class="S3">other 4 cards.</span><br />
+<br />
+<span class="S3">(3) Add a check like this for each of the 5 cards.</span><br />
+<span class="S3">Test it carefully and thoroughly.</span><br />
+<br />
+<span class="S3">(4) A PAIR occurs if there are 2 cards of the same rank,</span><br />
+<span class="S3">but different suits. e.g. the 9 of diamonds and 9 of spades.</span><br />
+<span class="S3">Write a method that checks for a PAIR in the 5 cards.</span><br />
+<span class="S3">It should examine all 5 cards and return true or false.</span><br />
+<br />
+<span class="S3">(5) You will have noticed that all the checking above</span><br />
+<span class="S3">requires lots of code, because the 5 cards have "names".</span><br />
+<span class="S3">This would become a lot simpler if the 5 cards were in</span><br />
+<span class="S3">an ARRAY, like this:</span><br />
+<br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;Card[] cards = new Card[5];</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S3">If you do this, the whole program must be REFACTORED -</span><br />
+<span class="S3">that means changing ALL the commands to work correctly</span><br />
+<span class="S3">with this new idea. &nbsp;But you need to do this anyway -</span><br />
+<span class="S3">the names cardA, cardB, cardC, cardD, and cardE must</span><br />
+<span class="S3">disappear. &nbsp;&nbsp;</span><br />
+<br />
+<span class="S3">=========================================================</span><br />
+<br />
+<span class="S3">Now you are ready to do some more complicated things.</span><br />
+<br />
+<span class="S3">(6) Write a method that checks ALL 5 cards to check for</span><br />
+<span class="S3">exact duplicates - e.g. a losing hand. &nbsp;It returs true</span><br />
+<span class="S3">if the hand is legal (no duplicates) but returns false </span><br />
+<span class="S3">if the hand is not legal. &nbsp;Now change the original program</span><br />
+<span class="S3">so that it just calls &nbsp;checkLegal() &nbsp;each time a card </span><br />
+<span class="S3">is changed. &nbsp;This makes things a lot simpler.</span><br />
+<br />
+<span class="S3">(7) Write a method to check for a FLUSH. &nbsp;This means all the</span><br />
+<span class="S3">suits are the same - that is, the FIRST LETTER of each code.</span><br />
+<br />
+<span class="S3">(8) Write a method to decide whether a hand contains 2 pairs.</span><br />
+<span class="S3">That means 2 different pairs, e.g. &nbsp;c7 d7 hk dj sj.</span><br />
+<span class="S3">It returns true if there are 2 pairs, false otherwise.</span><br />
+<br />
+<span class="S3">(9) Write a method to check for 3 of a kind.</span><br />
+<br />
+<span class="S3">(10) Write a method for 4 of a kind.</span><br />
+<br />
+<span class="S3">(11) Write a method to check for a straight. &nbsp;This is tricky,</span><br />
+<span class="S3">as the ranks must go in order (5,6,7,8,9), but the ranks of </span><br />
+<span class="S3">Jack, Queen, King, and Ace don't follow a simple order.</span><br />
+<br />
+<span class="S3">(12) Write a method to SCORE a hand. &nbsp;The scoring for poker</span><br />
+<span class="S3">goes like this:</span><br />
+<br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 - no pairs</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 - a pair</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 - 2 pairs</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 - 3 of a kind</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 - straight</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 - flush</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 - full house (3 of a kind plus another pair)</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 - 4 of a kind</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 - straight flush (a straight AND a flush)</span><br />
+<span class="S3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S3">(13) Lucky 13</span><br />
+<span class="S3">If two hands have the same rank, the tie is broken by</span><br />
+<span class="S3">comparing the highest card, then the next highest, etc.</span><br />
+<span class="S3">But in a pair, the pair rankings are compared first.</span><br />
+<span class="S3">In a full house, the 3-of-a-kind ranks are compared,</span><br />
+<span class="S3">and then the pair ranks. &nbsp;If two players have a straight</span><br />
+<span class="S3">and the same highest card, it's a draw. &nbsp;Same for a flush -</span><br />
+<span class="S3">there is no suit that out-ranks another.</span><br />
+<br />
+<span class="S3">(14) Two-player-game</span><br />
+<br />
+<span class="S3">Make a second hand, below the first. &nbsp;The players can take</span><br />
+<span class="S3">turns changing cards, until they both "chicken out". &nbsp;Or you</span><br />
+<span class="S3">could allow only 5 changes each. &nbsp;At the end, compare the </span><br />
+<span class="S3">2 hands to see who wins. &nbsp;Be sure to RE-USE the methods</span><br />
+<span class="S3">you wrote above.</span><br />
+<br />
+<span class="S3">(15) No-cheating, more realistic</span><br />
+<span class="S3">In this version, don't allow duplicate cards to be selected</span><br />
+<span class="S3">at random. &nbsp;Instead, each time a card is chosen, its code</span><br />
+<span class="S3">in the Deck array is changed to "xx". &nbsp;That means it has </span><br />
+<span class="S3">already been taken. &nbsp;Then when choosing a card at random,</span><br />
+<span class="S3">if and "xx" is chosen, choose another random number until </span><br />
+<span class="S3">a real card is selected. &nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<br />
+<span class="S3">***/</span><br />
+<br />
+<span class="S5">import</span><span class="S0"> </span>java<span class="S10">.</span>awt<span class="S10">.*;</span><br />
+<span class="S5">import</span><span class="S0"> </span>java<span class="S10">.</span>io<span class="S10">.*;</span><br />
+<span class="S5">import</span><span class="S0"> </span>javax<span class="S10">.</span>swing<span class="S10">.*;</span><br />
+<br />
+<span class="S5">public</span><span class="S0"> </span><span class="S5">class</span><span class="S0"> </span>Poker<span class="S0"> </span><span class="S5">extends</span><span class="S0"> </span>EasyApp<br />
+<span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span><span class="S5">static</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>main<span class="S10">(</span>String<span class="S10">[]</span><span class="S0"> </span>args<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">new</span><span class="S0"> </span>Poker<span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>String<span class="S10">[]</span><span class="S0"> </span>deck<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S6">"sa"</span><span class="S10">,</span><span class="S6">"s2"</span><span class="S10">,</span><span class="S6">"s3"</span><span class="S10">,</span><span class="S6">"s4"</span><span class="S10">,</span><span class="S6">"s5"</span><span class="S10">,</span><span class="S6">"s6"</span><span class="S10">,</span><span class="S6">"s7"</span><span class="S10">,</span><span class="S6">"s8"</span><span class="S10">,</span><span class="S6">"s9"</span><span class="S10">,</span><span class="S6">"st"</span><span class="S10">,</span><span class="S6">"sj"</span><span class="S10">,</span><span class="S6">"sq"</span><span class="S10">,</span><span class="S6">"sk"</span><span class="S10">,</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S6">"ha"</span><span class="S10">,</span><span class="S6">"h2"</span><span class="S10">,</span><span class="S6">"h3"</span><span class="S10">,</span><span class="S6">"h4"</span><span class="S10">,</span><span class="S6">"h5"</span><span class="S10">,</span><span class="S6">"h6"</span><span class="S10">,</span><span class="S6">"h7"</span><span class="S10">,</span><span class="S6">"h8"</span><span class="S10">,</span><span class="S6">"h9"</span><span class="S10">,</span><span class="S6">"ht"</span><span class="S10">,</span><span class="S6">"hj"</span><span class="S10">,</span><span class="S6">"hq"</span><span class="S10">,</span><span class="S6">"hk"</span><span class="S10">,</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S6">"da"</span><span class="S10">,</span><span class="S6">"d2"</span><span class="S10">,</span><span class="S6">"d3"</span><span class="S10">,</span><span class="S6">"d4"</span><span class="S10">,</span><span class="S6">"d5"</span><span class="S10">,</span><span class="S6">"d6"</span><span class="S10">,</span><span class="S6">"d7"</span><span class="S10">,</span><span class="S6">"d8"</span><span class="S10">,</span><span class="S6">"d9"</span><span class="S10">,</span><span class="S6">"dt"</span><span class="S10">,</span><span class="S6">"dj"</span><span class="S10">,</span><span class="S6">"dq"</span><span class="S10">,</span><span class="S6">"dk"</span><span class="S10">,</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S6">"ca"</span><span class="S10">,</span><span class="S6">"c2"</span><span class="S10">,</span><span class="S6">"c3"</span><span class="S10">,</span><span class="S6">"c4"</span><span class="S10">,</span><span class="S6">"c5"</span><span class="S10">,</span><span class="S6">"c6"</span><span class="S10">,</span><span class="S6">"c7"</span><span class="S10">,</span><span class="S6">"c8"</span><span class="S10">,</span><span class="S6">"c9"</span><span class="S10">,</span><span class="S6">"ct"</span><span class="S10">,</span><span class="S6">"cj"</span><span class="S10">,</span><span class="S6">"cq"</span><span class="S10">,</span><span class="S6">"ck"</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">};</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Card<span class="S0"> </span>cardE<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span><span class="S4">0</span><span class="S10">],</span><span class="S4">340</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Card<span class="S0"> </span>cardD<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span><span class="S4">10</span><span class="S10">],</span><span class="S4">260</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Card<span class="S0"> </span>cardC<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span><span class="S4">20</span><span class="S10">],</span><span class="S4">180</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Card<span class="S0"> </span>cardB<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span><span class="S4">30</span><span class="S10">],</span><span class="S4">100</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Card<span class="S0"> </span>cardA<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span><span class="S4">40</span><span class="S10">],</span><span class="S4">20</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>Button<span class="S0"> </span>bDeal<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>addButton<span class="S10">(</span><span class="S6">"Deal"</span><span class="S10">,</span><span class="S4">10</span><span class="S10">,</span><span class="S4">160</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">30</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span>Poker<span class="S10">()</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>setTitle<span class="S10">(</span><span class="S6">"Sample"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>setBounds<span class="S10">(</span><span class="S4">40</span><span class="S10">,</span><span class="S4">40</span><span class="S10">,</span><span class="S4">450</span><span class="S10">,</span><span class="S4">200</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>deal<span class="S10">()</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardE<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardD<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardC<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardB<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardA<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardE<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">)],</span><span class="S4">340</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardD<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">)],</span><span class="S4">260</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardC<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">)],</span><span class="S4">180</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardB<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">)],</span><span class="S4">100</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardA<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">)],</span><span class="S4">20</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span>random<span class="S10">(</span><span class="S5">int</span><span class="S0"> </span>min<span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span>max<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S10">(</span><span class="S5">int</span><span class="S10">)(</span>Math<span class="S10">.</span>random<span class="S10">()*(</span>max<span class="S10">-</span>min<span class="S10">+</span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span>min<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>actions<span class="S10">(</span>Object<span class="S0"> </span>source<span class="S10">,</span><span class="S0"> </span>String<span class="S0"> </span>command<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>bDeal<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>deal<span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>cardA<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardA<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>r<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardA<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>r<span class="S10">],</span><span class="S4">20</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2">// refresh window so image disappears</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>cardB<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardB<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>r<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardB<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>r<span class="S10">],</span><span class="S4">100</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2">// refresh window so image disappears</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>cardC<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardC<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>r<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardC<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>r<span class="S10">],</span><span class="S4">180</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2">// refresh window so image disappears</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>cardD<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardD<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>r<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">);</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardD<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>r<span class="S10">],</span><span class="S4">260</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2">// refresh window so image disappears</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>source<span class="S0"> </span><span class="S10">==</span><span class="S0"> </span>cardE<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>remove<span class="S10">(</span>cardE<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>r<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>random<span class="S10">(</span><span class="S4">0</span><span class="S10">,</span><span class="S4">51</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cardE<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Card<span class="S10">(</span>deck<span class="S10">[</span>r<span class="S10">],</span><span class="S4">340</span><span class="S10">,</span><span class="S4">50</span><span class="S10">,</span><span class="S4">72</span><span class="S10">,</span><span class="S4">97</span><span class="S10">,</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>repaint<span class="S10">();</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2">// refresh window so image disappears</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S5">class</span><span class="S0"> </span>Card<span class="S0"> </span><span class="S5">extends</span><span class="S0"> </span>javax<span class="S10">.</span>swing<span class="S10">.</span>JLabel<br />
+<span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span>String<span class="S0"> </span>code<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span>Card<span class="S10">(</span>String<span class="S0"> </span>cardCode<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>ImageIcon<span class="S0"> </span>im<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>ImageIcon<span class="S10">(</span>cardCode<span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S6">".gif"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>c<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">do</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> </span>c<span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><span class="S0"> </span><span class="S5">while</span><span class="S0"> </span><span class="S10">(</span>c<span class="S10">&lt;</span><span class="S4">100000</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span>im<span class="S10">.</span>getImageLoadStatus<span class="S10">()!=</span>java<span class="S10">.</span>awt<span class="S10">.</span>MediaTracker<span class="S10">.</span>COMPLETE<span class="S10">);</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>setIcon<span class="S10">(</span>im<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>code<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>cardCode<span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span>Card<span class="S10">(</span>String<span class="S0"> </span>cardCode<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>x<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>y<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>w<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>h<span class="S10">,</span>EasyApp<span class="S0"> </span>app<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>ImageIcon<span class="S0"> </span>im<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>ImageIcon<span class="S10">(</span>cardCode<span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S6">".gif"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span>c<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">do</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><span class="S0"> </span>c<span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><span class="S0"> </span><span class="S5">while</span><span class="S0"> </span><span class="S10">(</span>c<span class="S10">&lt;</span><span class="S4">100000</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span>im<span class="S10">.</span>getImageLoadStatus<span class="S10">()!=</span>java<span class="S10">.</span>awt<span class="S10">.</span>MediaTracker<span class="S10">.</span>COMPLETE<span class="S10">);</span><span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>setIcon<span class="S10">(</span>im<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>addTo<span class="S10">(</span>x<span class="S10">,</span>y<span class="S10">,</span>w<span class="S10">,</span>h<span class="S10">,</span>app<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>code<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>cardCode<span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>addTo<span class="S10">(</span><span class="S5">int</span><span class="S0"> </span>x<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>y<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>w<span class="S10">,</span><span class="S5">int</span><span class="S0"> </span>h<span class="S10">,</span>EasyApp<span class="S0"> </span>app<span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>app<span class="S10">.</span>add<span class="S10">(</span><span class="S5">this</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">this</span><span class="S10">.</span>setBounds<span class="S10">(</span>x<span class="S10">,</span>y<span class="S10">,</span>w<span class="S10">,</span>h<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>app<span class="S10">!=</span><span class="S5">null</span><span class="S10">)</span><span class="S5">this</span><span class="S10">.</span>addMouseListener<span class="S10">(</span>app<span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<br />
+<span class="S10">}</span><br />
+<span class="S0"></span></span>
+</body>
+</html>
